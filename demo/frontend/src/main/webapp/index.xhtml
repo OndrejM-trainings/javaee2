@@ -5,22 +5,34 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Notes</title>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+            table, th, td {
+                border: 1px solid black;
+            }
+            th, td {
+                padding: 0.5em 1em;
+            }
+            
+        </style>
     </h:head>
     <h:body>
         <h1>Notes</h1>
         <h:dataTable value="#{model.notes}" var="note">
-         <h:column>
-             <f:facet name="header">Id</f:facet>
-            #{note.id}
-         </h:column>
-         <h:column>
-            <f:facet name="header">Title</f:facet>
-            #{note.title}
-         </h:column>
-         <h:column>
-            <f:facet name="header">Description</f:facet>
-            #{note.description}
-         </h:column>
-      </h:dataTable>
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                    #{note.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Title</f:facet>
+                    #{note.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                    #{note.description}
+            </h:column>
+        </h:dataTable>
     </h:body>
 </html>
