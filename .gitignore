@@ -1,3 +1,10 @@
+# Netbeans
 nb-configuration.xml
+
+#Maven
 target/
-glassfish-web.xml
+
+#Eclipse
+.settings/
+.project
+.classpath

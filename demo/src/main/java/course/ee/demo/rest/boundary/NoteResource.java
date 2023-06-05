@@ -12,11 +12,14 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.Collection;
 
 @Path("note")
 @RequestScoped
+@Produces(MediaType.APPLICATION_JSON)
 public class NoteResource {
 
     @Inject
