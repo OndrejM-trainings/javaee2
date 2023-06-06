@@ -63,6 +63,23 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version>
             </plugin>
+            <plugin>
+                <groupId>org.jboss.ws.plugins</groupId>
+                <artifactId>jaxws-tools-maven-plugin</artifactId>
+                <version>1.3.0.Final</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <wsdls>${basedir}/src/main/webapp/WEB-INF/wsdl/NoteServiceService.wsdl</wsdls>
+                    <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsconsume</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
