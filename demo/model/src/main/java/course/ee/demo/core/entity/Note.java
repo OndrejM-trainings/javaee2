@@ -1,12 +1,19 @@
 package course.ee.demo.core.entity;
 
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+import jakarta.json.bind.adapter.JsonbAdapter;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
+@XmlRootElement
 public class Note {
 
     private Long id;
     private String title;
     private String description;
+    private Status status;
+    private User author;
 
     public Long getId() {
         return id;
@@ -14,6 +21,14 @@ public class Note {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public String getTitle() {
@@ -30,6 +45,14 @@ public class Note {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     @Override
@@ -60,5 +83,23 @@ public class Note {
         } else {
             return false;
         }
+    }
+
+    public static class NoDetailsAdapter implements JsonbAdapter<Note, JsonObject> {
+
+        @Override
+        public JsonObject adaptToJson(Note note) throws Exception {
+            return Json.createObjectBuilder()
+                    .add("id", note.getId())
+                    .add("title", note.getTitle())
+                    .add("status", note.getStatus().name())
+                    .build();
+        }
+
+        @Override
+        public Note adaptFromJson(JsonObject obj) throws Exception {
+            throw new UnsupportedOperationException("Not supported.");
+        }
+
     }
 }

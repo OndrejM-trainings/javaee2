@@ -33,6 +33,10 @@
                 <f:facet name="header">Description</f:facet>
                     #{note.description}
             </h:column>
+            <h:column>
+                <f:facet name="header">Author</f:facet>
+                    #{note.author.firstName} #{note.author.lastName}
+            </h:column>
         </h:dataTable>
     </h:body>
 </html>
