@@ -1,0 +1,10 @@
+# Netbeans
+nb-configuration.xml
+
+#Maven
+target/
+
+#Eclipse
+.settings/
+.project
+.classpath

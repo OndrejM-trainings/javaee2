@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Notes</title>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+            table, th, td {
+                border: 1px solid black;
+            }
+            th, td {
+                padding: 0.5em 1em;
+            }
+            
+        </style>
+    </h:head>
+    <h:body>
+        <h1>Notes</h1>
+        <h:dataTable value="#{model.notes}" var="note">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                    #{note.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Title</f:facet>
+                    #{note.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                    #{note.description}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Author</f:facet>
+                    #{note.author.firstName} #{note.author.lastName}
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html>
