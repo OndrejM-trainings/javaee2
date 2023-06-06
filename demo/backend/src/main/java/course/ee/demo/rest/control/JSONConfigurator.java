@@ -14,12 +14,22 @@ import jakarta.ws.rs.ext.Provider;
 
 @Provider
 public class JSONConfigurator implements ContextResolver<Jsonb> {
+
     @Context
     private ResourceInfo ri;
+
     @Override
     public Jsonb getContext(Class<?> type) {
+
+        // Configures JSON-B mapper to order properties in the JSON alphabetically, from A to Z
         JsonbConfig config = new JsonbConfig()
                 .withPropertyOrderStrategy(PropertyOrderStrategy.LEXICOGRAPHICAL);
+
+        /* Uses injected context ResourceInfo to check whether
+           the resource method to be executed is on the NoteResource class and has @Path("nodetails") annotation.
+           Only for that method it will use an adapter, which filters only the main info
+           from the Note object.
+         */
         if (NoteResource.class.isAssignableFrom(ri.getResourceClass())
                 && ri.getResourceMethod().isAnnotationPresent(Path.class)) {
             String path = ri.getResourceMethod().getAnnotation(Path.class).value();
@@ -27,6 +37,7 @@ public class JSONConfigurator implements ContextResolver<Jsonb> {
                 config.withAdapters(new Note.NoDetailsAdapter());
             }
         }
+
         return JsonbBuilder.create(config);
     }
 }
