@@ -4,9 +4,6 @@ import course.ee.demo.core.boundary.Repository;
 import course.ee.demo.core.entity.Note;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
-import jakarta.json.bind.Jsonb;
-import jakarta.json.bind.JsonbBuilder;
-import jakarta.json.bind.JsonbConfig;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -37,15 +34,14 @@ public class NoteResource {
 
     @GET
     @Path("nodetails")
-    public String getAllNoDetails(@QueryParam("limit") Integer maxResults) {
+    public Collection<Note> getAllNoDetails(@QueryParam("limit") Integer maxResults) {
         Collection<Note> notes;
         if (maxResults != null) {
             notes = repository.getLimitedNotes(maxResults);
         } else {
             notes = repository.getAllNotes();
         }
-        Jsonb noDetailsJsonb = JsonbBuilder.create(new JsonbConfig().withAdapters(new Note.NoDetailsAdapter()));
-        return noDetailsJsonb.toJson(notes);
+        return notes;
     }
 
     @POST
