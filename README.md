@@ -2,6 +2,8 @@
 
 https://bit.ly/javaee2
 
+http://www.ictpro.cz/hodnoceni
+
 ## Web services
 
 V adresári `demo` nájdete hotovú aplikáciu, ktorá demonštruje REST a SOAP služby a mapovanie JSON na Java objekty:
